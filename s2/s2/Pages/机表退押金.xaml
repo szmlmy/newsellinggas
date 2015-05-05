@@ -108,7 +108,7 @@
         			AutoGenerateColumns="False"  IsReadOnly="True">
                         <a:Data.Items>
                             <o:PagedObjectList x:Name="pipelineslist" WebClientInfo="{StaticResource dbclient}"
-        					Path="{m:Exp Str=$from t_userfiles where \{pipelinesearch.DataContext.Condition\} and f_userstate\=\'正常\' and f_yajin is null and f_yytdate ^ \'2014-09-17\'}"
+        					Path="{m:Exp Str=$from t_userfiles where \{pipelinesearch.DataContext.Condition\} and f_userstate\=\'正常\' and f_gasmeterstyle\=\'机表\'  and f_yajin is null and f_yytdate ^ \'2014-09-17\'}"
         					IsOld="{m:Exp Str=SaveAction.State\=\=$End$ or pipeline.DataContext.State\=\=$End$}"
         					PageIndex="{m:Exp Str=pager.PageIndex}" PageSize="{m:Exp Str=pager.PageSize}" SumNames=","/>
                         </a:Data.Items>
@@ -152,7 +152,7 @@
                         <Button Content="撤 销" Margin="5" Click="{m:Exp Str=pipeline.DataContext.New()}" Width="50" />
 
                     </StackPanel>
-                    <Grid Margin="0,6,0,45" >
+                    <Grid Margin="0,10,0,41" >
                         <Grid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FFF2F8FF" Offset="0"/>

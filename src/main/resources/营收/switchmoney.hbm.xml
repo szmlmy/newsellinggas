@@ -49,6 +49,8 @@
 		<property name="f_basenumber" type="double"/>
 		<!--转出气量-->
 		<property name="f_outgasno" type="double"/>
+		<!--转出前金额-->
+		<property name="f_yhju" type="double"/>
 		<!--转出气费金额-->
 		<property name="f_outmoney" type="double"/>
 		<!--用气押金转出-->
@@ -109,6 +111,8 @@
 		<property name="f_repairnum" type="double"/>
 		<!--维修费金额-->
 		<property name="f_amountmaintenance" type="double"/>
+		<!--转入前金额-->
+		<property name="f_zyryhjy" type="double"/>
 		<!--转入金额-->
 		<property name="f_newmoney" type="double"/>
 		<!--转入气价-->
@@ -143,6 +147,7 @@
 		<property name="f_outuserzherownum" type="int"/>
 	
 	
-	
+		<!--卡内气量-->
+		<property name="f_kaneqiliang" type="double"/>
 	</class>
 </hibernate-mapping>

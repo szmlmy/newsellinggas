@@ -342,7 +342,7 @@
             						<sdk:DataGridTemplateColumn Header="序号" d:IsLocked="True" >
             							<sdk:DataGridTemplateColumn.CellTemplate>
             								<DataTemplate>
-            									<TextBox   Text="{m:Exp Str=data\=\=data.List.EmptyRow:$*$\,data.Index}"  Style="{StaticResource TextBoxDatagridStyle}" IsReadOnly="True"/> 
+            									<TextBox   Text="{m:Exp Str=data\=\=data.List.EmptyRow:$*$\,data.Index}"  Style="{StaticResource TextBoxDatagridStyle}"/> 
             								</DataTemplate>
             							</sdk:DataGridTemplateColumn.CellTemplate>
             						</sdk:DataGridTemplateColumn>
@@ -545,7 +545,7 @@
                                     </DataTemplate>
                                 </sdk:DataGridTemplateColumn.CellTemplate>
                             </sdk:DataGridTemplateColumn>
-                           
+
                         </sdk:DataGrid.Columns>
                     </sdk:DataGrid>
                 </Grid>

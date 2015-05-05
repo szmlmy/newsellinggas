@@ -39,42 +39,31 @@
              Path="{m:Exp Str=kbfee1.DataContext.f_userid!\=null:$one/from t_userfiles where f_userid\=\'\{kbfee1.DataContext.f_userid\}\'$\,$null$}"  
 			 IsInit="{m:Exp Str=SaveAction\=\=$Error$ |or|  print.State\=\=$End$}">
 
-                <!--总购气量-->
-                <o:PropertySetter PropertyName="f_cumulativepurchase" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:kbfee.f_allgasnum - kbfee.f_remaingas\,null}"></o:PropertySetter>
-                <!--表累计购气量-->
-                <o:PropertySetter PropertyName="f_metergasnums" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:kbfee.f_allgasnum - kbfee.f_remaingas\,null}"></o:PropertySetter>
-                <!--结余清零-->
-                <o:PropertySetter PropertyName="f_zhye" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:0\,null}"></o:PropertySetter>
-
-
-
             </o:GeneralObject>
 
+
+
+            
             <!--转入用户对象-->
             <o:GeneralObject Name="inkbusers" EntityType="t_userfiles" WebClientInfo="{StaticResource dbclient}"
              Path="{m:Exp Str=kbfee1.DataContext.f_inid!\=null:$one/from t_userfiles where f_userid\=\'\{kbfee1.DataContext.f_inid\}\'$\,$null$}"  
 			 IsInit="{m:Exp Str=SaveAction\=\=$Error$ |or| print.State\=\=$End$}">
 
-                <!--总购气量-->
-                <o:PropertySetter PropertyName="f_cumulativepurchase" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:kbfee.f_newsumgasno\,null}"></o:PropertySetter>
-                <!--表累计购气量-->
-                <o:PropertySetter PropertyName="f_metergasnums" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:kbfee.f_newsumgasno\,null}"></o:PropertySetter>
-                <!--结余-->
-                <o:PropertySetter PropertyName="f_zhye" 
-				NoDependValue="{m:Exp Str=SaveAction\=>Saving!\=null:inkbusers.f_zhye + kbfee.f_newmoney\,null}"></o:PropertySetter>
-
-
             </o:GeneralObject>
 
 
-
-
-            <!--转费对象-->
+            <b:HQLAction Name="UpdateUserFileOut" Type="sql"
+			HQL="{m:Exp Str=$update t_userfiles set  f_cumulativepurchase\=\{kbfee.f_allgasnum-kbfee.f_remaingas\}\,f_metergasnums\=\{kbfee.f_allgasnum-kbfee.f_remaingas\}\,f_zhye\=0 where f_userid \= \'\{kbfee1.DataContext.f_userid\}\'}"
+		    />
+            <b:HQLAction Name="UpdateUserFile" Type="sql"
+			HQL="{m:Exp Str=$update t_userfiles set  f_cumulativepurchase\=\{kbfee.f_newsumgasno\}\,f_metergasnums\=\{kbfee.f_newsumgasno\}\,f_zhye\=\{inkbusers.f_zhye+kbfee.f_newmoney\} where f_userid \= \'\{kbfee1.DataContext.f_inid\}\'}"
+		    />
+            <b:HQLAction Name="UpdateUserFileKB" Type="sql"
+			HQL="{m:Exp Str=$update t_userfiles set  f_cumulativepurchase\=\{kbfee.f_newsumgasno-kbfee.f_kaneqiliang\}\,f_metergasnums\=\{kbfee.f_newsumgasno-kbfee.f_kaneqiliang\} where f_userid \= \'\{kbfee1.DataContext.f_inid\}\'}"
+		    />
+            <!--转费对象
+ 
+            -->
             <o:GeneralObject Name="kbfee" EntityType="t_switchmoney" WebClientInfo="{StaticResource dbclient}"
             IsInit="{m:Exp Str=SaveAction\=\=$Error$ |or| print.State\=\=$End$}">
                 <o:PropertySetter PropertyName="f_outuserzherownum" NoDependValue="{m:Exp Str=outkbusers !\= null and outkbusers.f_zherownum !\= null and outkbusers.f_zherownum.ToInt()^24:outkbusers.f_zherownum+1\,1}"/>
@@ -86,18 +75,28 @@
 
 
             <!--保存card.State \=\= $End$ |or|-->
-            <b:BatchExcuteAction Name="SaveAction" CanSave="{m:Exp Str=save2\=>Click!\=null |or| save1\=>Click!\=null}" WebClientInfo="{StaticResource dbclient}">
-                <!--用户对象-->
+            <b:BatchExcuteAction Name="SaveAction" CanSave="{m:Exp Str=save1\=>Click!\=null}" WebClientInfo="{StaticResource dbclient}">
+                <!--用户对象
                 <b:BatchInfo Source="{m:Exp Str=outkbusers}" MethodName="SaveToJson"/>
-                <b:BatchInfo Source="{m:Exp Str=inkbusers}" MethodName="SaveToJson"/>
+                <b:BatchInfo Source="{m:Exp Str=inkbusers}" MethodName="SaveToJson"/>-->
+                
+                <b:BatchInfo Source="{m:Exp Str=UpdateUserFileOut}" MethodName="InvokeToJson"/>
+                <b:BatchInfo Source="{m:Exp Str=UpdateUserFile}" MethodName="InvokeToJson"/>
+                <b:BatchInfo Source="{m:Exp Str=kbfee}" MethodName="SaveToJson"/>
+
+            </b:BatchExcuteAction>
+
+            <b:BatchExcuteAction Name="SaveAction1" CanSave="{m:Exp Str=save2\=>Click!\=null}" WebClientInfo="{StaticResource dbclient}">
+                <b:BatchInfo Source="{m:Exp Str=UpdateUserFileOut}" MethodName="InvokeToJson"/>
+                <b:BatchInfo Source="{m:Exp Str=UpdateUserFileKB}" MethodName="InvokeToJson"/>
                 <b:BatchInfo Source="{m:Exp Str=kbfee}" MethodName="SaveToJson"/>
 
             </b:BatchExcuteAction>
 
             <!--卡对象-->
             <oo:NewGeneralICCard Name="card"   
-          CanSellGas="{m:Exp Str='SaveAction.State=>Completed==$End$ and kbfee1.DataContext.f_writecardtype!=$初始化卡$' }"
-		 CanRewriteCard="{m:Exp Str='SaveAction.State=>Completed==$End$ and kbfee1.DataContext.f_writecardtype==$初始化卡$'}"
+          CanSellGas="{m:Exp Str='SaveAction1.State=>Completed==$End$ and kbfee1.DataContext.f_writecardtype!=$初始化卡$' }"
+		 CanRewriteCard="{m:Exp Str='SaveAction1.State=>Completed==$End$ and kbfee1.DataContext.f_writecardtype==$初始化卡$'}"
 		 CardId="{m:Exp Str='inkbusers != null \:inkbusers.f_cardid\,null'}"
 		 Gas="{m:Exp Str=kbfee1.DataContext.f_outgasno}"
          Factory="{m:Exp Str='inkbusers != null\:inkbusers.f_aliasname\,null'}"
@@ -120,7 +119,7 @@
             </oo:NewGeneralICCard>
 
 
-       
+
 
 
 
@@ -238,6 +237,7 @@
                                 <a:Data.Prop>
                                     <o:PropertySetter PropertyName="f_outgasno" Default="0" NoDependValue="{m:Exp Str=kbfee1.DataContext.f_remaingas}"
 									/>
+                                    <!--  ValidationVal="{m:Exp Str= kbfee.f_outgasno ^\= kbfee.f_remaingas \:True\,False}" ErrorMessage="转出气量超过余气量"-->
                                 </a:Data.Prop>
                             </TextBox>
 
@@ -275,7 +275,7 @@
                                     <o:PropertySetter PropertyName="f_aliasname" NoDependValue="{m:Exp Str=inkbusers.f_aliasname\=&gt;Completed}"/>
                                 </a:Data.Prop>
                             </TextBox>-->
-                            
+
 
 
                             <TextBlock Margin="1,5,-1,7" Grid.Row="9" TextWrapping="Wrap" Text="转入编号：" TextAlignment="Right" Height="25"/>
@@ -370,7 +370,7 @@
                             <TextBlock Text="当前用气指数："  TextWrapping="Wrap" TextAlignment="Right" Grid.Row="3" Margin="0,8,-2,4" Height="25" Grid.Column="4" HorizontalAlignment="Right" Width="118"/>
                             <TextBox Text="{m:Bind Path=f_watchreading}"  Grid.Column="5" Margin="0,8,0,4" Grid.Row="3" HorizontalAlignment="Stretch" Width="Auto" Height="25"  VerticalAlignment="Stretch" >
                                 <a:Data.Prop>
-                                    <o:PropertySetter PropertyName="f_watchreading" Value="{m:Exp Str=outkbusers.lastinputgasnum\=&gt;Completed}"/>
+                                    <o:PropertySetter PropertyName="f_watchreading" NotNull="True" Value="{m:Exp Str=outkbusers.lastinputgasnum\=&gt;Completed}"/>
                                 </a:Data.Prop>
                             </TextBox>
                             <TextBlock Text="开户日期：" Margin="0,7,0,5" TextWrapping="Wrap" TextAlignment="Right" Grid.Row="6" Width="130" Height="25"/>

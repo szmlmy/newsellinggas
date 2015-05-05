@@ -28,7 +28,6 @@
 
 
         <!--开发环境-->
- 
 
         <o:WebClientInfo x:Key="ldapaddress" BaseAddress="http://127.0.0.1:83/rs"/>
         <o:WebClientInfo x:Key="reportaddress" BaseAddress="http://127.0.0.1:8080/rs/report"/>
@@ -59,7 +58,7 @@
  
         
         
-        <o:WebClientInfo x:Key="tunnelurl"  BaseAddress="http://127.0.0.1:8080/rs/tunnel"/> 
+        <o:WebClientInfo x:Key="tunnelurl"  BaseAddress="http://127.0.0.1:8080/rs/tunnel"/> -->
  
 
  

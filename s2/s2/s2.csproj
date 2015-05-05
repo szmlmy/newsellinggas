@@ -133,17 +133,30 @@
     <Compile Include="Pages\台区汇总表卡表.xaml.cs">
       <DependentUpon>台区汇总表卡表.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\地址管理.xaml.cs">
+      <DependentUpon>地址管理.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\卡表转气.xaml.cs">
+      <DependentUpon>卡表转气.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\机表转气.xaml.cs">
+      <DependentUpon>机表转气.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\机表退押金.xaml.cs">
       <DependentUpon>机表退押金.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\转费收费.xaml.cs">
-      <DependentUpon>转费收费.xaml</DependentUpon>
+    <Compile Include="Pages\民用批量退押金.xaml.cs">
+      <DependentUpon>民用批量退押金.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Pages\转费收费补打.xaml.cs">
       <DependentUpon>转费收费补打.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\转费查询.xaml.cs">
       <DependentUpon>转费查询.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\退押金查询.xaml.cs">
+      <DependentUpon>退押金查询.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\非民用建档发卡.xaml.cs">
       <DependentUpon>非民用建档发卡.xaml</DependentUpon>
@@ -1484,19 +1497,35 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\地址管理.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\卡表转气.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\机表转气.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\机表退押金.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\转费收费.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Pages\民用批量退押金.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\转费收费补打.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\转费查询.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\退押金查询.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

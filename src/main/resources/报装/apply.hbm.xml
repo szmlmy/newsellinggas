@@ -72,7 +72,7 @@
 	 	<!-- 下面是对于的花名册表 -->
 	    <set name="f_applycustomer"  cascade="delete-orphan" order-by="id">
           <key column="applyid" /> 
-          <one-to-many entity-name="t_applycustomer"   /> 
+          <one-to-many entity-name="t_applycustomer"/> 
         </set> 
         <!-- 下面是用气设备 -->
 	    <set name="f_device" cascade="all-delete-orphan"  order-by="id">

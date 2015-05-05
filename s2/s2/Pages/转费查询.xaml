@@ -159,13 +159,14 @@
 									<sdk:DataGridTextColumn Header="序号" Binding="{Binding Index}" />
 									<sdk:DataGridTextColumn Header="转出用户ID号" Binding="{Binding f_userid}" />
 			            			<sdk:DataGridTextColumn Header="转出用户/单位名称" Binding="{Binding f_username}"/>
-			            			<sdk:DataGridTextColumn Header="转出楼号" Binding="{Binding f_cusDom}" />
+                            <!--<sdk:DataGridTextColumn Header="转出楼号" Binding="{Binding f_cusDom}" />
 									<sdk:DataGridTextColumn Header="转出门牌号" Binding="{Binding f_apartment}"/>
 									<sdk:DataGridTextColumn Header="转出表号" Binding="{Binding f_meternumber}"/>
+                                    <sdk:DataGridTextColumn Header="转出气价" Binding="{Binding f_gasprice}" />-->
 									<sdk:DataGridTextColumn Header="开户日期" Binding="{Binding f_dateofopening,StringFormat=yyyy-MM-dd}"/>
 									<sdk:DataGridTextColumn Header="余气量" Binding="{Binding f_remaingas}"/>
 									<sdk:DataGridTextColumn Header="累计购气量" Binding="{Binding f_allgasnum}"/>
-									<sdk:DataGridTextColumn Header="转出气价" Binding="{Binding f_gasprice}" />
+									
 									<sdk:DataGridTextColumn Header="转出/转入气量" Binding="{Binding f_outgasno}" />
 									<sdk:DataGridTextColumn Header="转出金额" Binding="{Binding f_outmoney}" />
 
@@ -175,18 +176,18 @@
 									<sdk:DataGridTextColumn Header="转出后维修费截止日期" Binding="{Binding f_outbeginfee,StringFormat=yyyy-MM-dd}" />-->
 									<sdk:DataGridTextColumn Header="转入用户ID号" Binding="{Binding f_inid}" />
 									<sdk:DataGridTextColumn Header="转入用户/单位名称" Binding="{Binding f_inarea}" />
-									<sdk:DataGridTextColumn Header="转入楼号" Binding="{Binding f_incusdom}" />
+                            <!--<sdk:DataGridTextColumn Header="转入楼号" Binding="{Binding f_incusdom}" />
 									<sdk:DataGridTextColumn Header="转入门牌号" Binding="{Binding f_inapartment}" />
 									<sdk:DataGridTextColumn Header="转入表号" Binding="{Binding f_inwatchno}" />
+									<sdk:DataGridTextColumn Header="转入气价" Binding="{Binding f_newgasprice}" />-->
 									<sdk:DataGridTextColumn Header="转入原累计购气量" Binding="{Binding f_oldsumgasno}" />
 									<sdk:DataGridTextColumn Header="转入现累计购气量" Binding="{Binding f_newsumgasno}" />
-									<sdk:DataGridTextColumn Header="转入气价" Binding="{Binding f_newgasprice}" />
 									<sdk:DataGridTextColumn Header="转入金额" Binding="{Binding f_newmoney}" />
                             <!--<sdk:DataGridTextColumn Header="转入前维修费截止日期" Binding="{Binding f_inbeginfee,StringFormat=yyyy-MM-dd}" />
 									<sdk:DataGridTextColumn Header="转入后维修费截止日期" Binding="{Binding f_innewbeginfee,StringFormat=yyyy-MM-dd}" />-->
 									<sdk:DataGridTextColumn Header="转费日期" Binding="{Binding f_outfeetime,StringFormat=yyyy-MM-dd}"/>
-									<sdk:DataGridTextColumn Header="转气手续费" Binding="{Binding f_movepoundage}" />
-									<sdk:DataGridTextColumn Header="付手续费方" Binding="{Binding f_switchin}"/>
+                            <sdk:DataGridTextColumn Header="转出原因" Binding="{Binding f_outfeereason}" />
+                                    <sdk:DataGridTextColumn Header="备注" Binding="{Binding f_beizhu}"/>
 									<sdk:DataGridTextColumn Header="操作员" Binding="{Binding f_sgoperator}" />
 									<sdk:DataGridTextColumn Header="网点" Binding="{Binding f_sgnetwork}" />
 									<sdk:DataGridTextColumn Header="分公司" Binding="{Binding f_filiale}" />
